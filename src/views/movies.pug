@@ -1,7 +1,11 @@
+extends layout/layout
 include mixins/movieBlock
 
-body
-    h1 #{siteTitle}
+block content
+    if searchingBy
+        h1 Searching By #{searchingBy}
+    else
+        h1 Movies
     .movies
         each item in movieList
             +movieBlock({
