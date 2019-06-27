@@ -1,0 +1,10 @@
+include mixins/movieBlock
+
+body
+    h1 #{siteTitle}
+    .movies
+        each item in movieList
+            +movieBlock({
+                title:item.title,
+                id:item.id
+            })
