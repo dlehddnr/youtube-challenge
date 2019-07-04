@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+    .search
+        form(action="/search", method="get")
+            input(type="text", placeholder="Type year", name="year")
+        form(action="/search", method="get")
+            input(type="text", placeholder="Type rating", name="rating")
+        if movies
+            each item in movies
+                a(href=`/${item.id}`)
+                    h1=item.title
