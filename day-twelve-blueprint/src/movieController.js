@@ -9,7 +9,11 @@ import Movie from "./models/Movie";
 // Add your magic here!
 export const home = async (req, res) => {
   const movies = await Movie.find({});
-  res.render("home", { movies });
+  if (movies.length === 0) {
+    res.render("404");
+  } else {
+    res.render("home", { movies });
+  }
 };
 export const error = (req, res) => {
   res.render("404");
@@ -21,10 +25,7 @@ export const detail = async (req, res) => {
   try {
     const movie = await Movie.findById(id);
     res.render("detail", { movie });
-  } catch (error) {
-    console.log(error);
-    res.redirect("404");
-  }
+  } catch (error) {}
 };
 
 export const search = async (req, res) => {
@@ -35,15 +36,23 @@ export const search = async (req, res) => {
   try {
     if (rating) {
       const movies = await filterRating(ms, rating);
-      res.render("search", { movies });
+      if (movies.length === 0) {
+        res.render("404");
+      } else {
+        res.render("search", { movies });
+      }
     } else if (year) {
       const movies = await filterYear(ms, year);
-      res.render("search", { movies });
+      if (movies.length === 0) {
+        res.render("404");
+      } else {
+        res.render("search", { movies });
+      }
     } else {
       res.render("search");
     }
   } catch (error) {
-    res.redirect("404");
+    console.log(error);
   }
 };
 

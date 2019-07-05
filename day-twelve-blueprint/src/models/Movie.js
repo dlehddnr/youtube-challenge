@@ -10,6 +10,8 @@ WE NEED TO SHARE THE SAME DB SO NICO CAN CHECK OUT EVERYBODYS PROJECT.
 const YOUR_USERNAME = "dy95032";
 
 const MovieSchema = mongoose.Schema({
+  // I don't know how to create id required
+  // I don't upload movie with id so Schema complaining there is no id
   title: {
     type: String,
     required: true
